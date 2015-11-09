@@ -42,6 +42,12 @@ function openTag(node) {
       continue;
     }
 
+    // value prop and attributes.value should act the same.
+    if (name == 'value') {
+      ret += ' ' + createAttribute(attrProp, (value || "").toString(), true);
+      continue;
+    }
+
     if (name == 'style') {
       var css = '';
       value = extend({}, value);
@@ -64,7 +70,7 @@ function tagContent(node) {
   else {
     var ret = '';
     if (node.children && node.children.length) {
-      for (var i = 0, l = node.children.length; i<l; i++) {
+      for (var i = 0, l = node.children.length; i < l; i++) {
         var child = node.children[i];
         ret += toHTML(child, node);
       }
