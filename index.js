@@ -44,7 +44,8 @@ function openTag(node) {
 
     // value prop and attributes.value should act the same.
     if (name == 'value') {
-      ret += ' ' + createAttribute(attrProp, (value || "").toString(), true);
+      var v = (value || {})[name] || ''
+      ret += ' ' + createAttribute(name, v, true);
       continue;
     }
 
